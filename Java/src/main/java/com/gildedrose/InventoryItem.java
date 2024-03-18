@@ -7,6 +7,10 @@ public class InventoryItem {
         this.item = item;
     }
 
+    public static InventoryItem create(Item item) {
+        return new InventoryItem(item);
+    }
+
     protected void decreaseQuality() {
         item.quality--;
     }
