@@ -18,6 +18,10 @@ class GildedRose {
 
         updateItemExpiration(item);
 
+        handleExpire(item);
+    }
+
+    private void handleExpire(Item item) {
         if (item.sellIn < 0) {
             if (!item.name.equals("Aged Brie")) {
                 if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
