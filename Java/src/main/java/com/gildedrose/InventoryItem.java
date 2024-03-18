@@ -4,7 +4,7 @@ public class InventoryItem {
     public static final String AGED_BRIE = "Aged Brie";
     public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
-    private Item item;
+    protected Item item;
 
     public InventoryItem(Item item) {
         this.item = item;
@@ -58,23 +58,11 @@ public class InventoryItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals(BACKSTAGE_PASSES)) {
-            increaseQuality();
-
-            if (item.sellIn < 11) {
-                increaseQuality();
-            }
-
-            if (item.sellIn < 6) {
-                increaseQuality();
-            }
-        } else {
-            if (item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                return;
-            }
-            if (item.quality > 0) {
-                decreaseQuality();
-            }
+        if (item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+            return;
+        }
+        if (item.quality > 0) {
+            decreaseQuality();
         }
     }
 
