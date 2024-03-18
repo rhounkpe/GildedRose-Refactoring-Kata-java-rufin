@@ -7,20 +7,20 @@ public class InventoryItem {
         this.item = item;
     }
 
-    protected void decreaseQuality(Item item) {
+    protected void decreaseQuality() {
         item.quality--;
     }
 
-    protected void increaseQuality(Item item) {
+    protected void increaseQuality() {
         if (item.quality < 50) {
             item.quality++;
         }
     }
 
-    protected void handleExpire(Item item) {
+    protected void handleExpire() {
         if (item.sellIn < 0) {
             if (item.name.equals("Aged Brie")) {
-                increaseQuality(item);
+                increaseQuality();
             } else {
                 if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     item.quality = 0;
@@ -29,48 +29,48 @@ public class InventoryItem {
                         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
                             return;
                         }
-                        decreaseQuality(item);
+                        decreaseQuality();
                     }
                 }
             }
         }
     }
 
-    protected void updateItemExpiration(Item item) {
+    protected void updateItemExpiration() {
         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
         item.sellIn--;
     }
 
-    protected void updateQuality(Item item) {
+    protected void updateQuality() {
         if (item.name.equals("Aged Brie")) {
-            increaseQuality(item);
+            increaseQuality();
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            increaseQuality(item);
+            increaseQuality();
 
             if (item.sellIn < 11) {
-                increaseQuality(item);
+                increaseQuality();
             }
 
             if (item.sellIn < 6) {
-                increaseQuality(item);
+                increaseQuality();
             }
         } else {
             if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 return;
             }
             if (item.quality > 0) {
-                decreaseQuality(item);
+                decreaseQuality();
             }
         }
     }
 
-    public void updateItemEveryday(Item item) {
-        updateQuality(item);
+    public void updateItemEveryday() {
+        updateQuality();
 
-        updateItemExpiration(item);
+        updateItemExpiration();
 
-        handleExpire(item);
+        handleExpire();
     }
 }
