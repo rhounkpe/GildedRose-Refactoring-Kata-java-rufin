@@ -11,6 +11,9 @@ public class InventoryItem {
     }
 
     public static InventoryItem create(Item item) {
+        if (item.name.equals(AGED_BRIE)) {
+            return new AgedBrie(item);
+        }
         return new InventoryItem(item);
     }
 
@@ -51,9 +54,7 @@ public class InventoryItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals(AGED_BRIE)) {
-            increaseQuality();
-        } else if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+        if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
             increaseQuality();
 
             if (item.sellIn < 11) {
