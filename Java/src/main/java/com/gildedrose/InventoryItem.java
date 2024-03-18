@@ -18,6 +18,10 @@ public class InventoryItem {
         if (item.name.equals(BACKSTAGE_PASSES)) {
             return new BackstagePass(item);
         }
+
+        if (item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+            return new Sulfurus(item);
+        }
         return new InventoryItem(item);
     }
 
@@ -58,9 +62,6 @@ public class InventoryItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-            return;
-        }
         if (item.quality > 0) {
             decreaseQuality();
         }
