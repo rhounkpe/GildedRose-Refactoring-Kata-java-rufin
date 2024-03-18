@@ -7,6 +7,37 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GildedRoseTest {
 
     @Test
+    void should_degrade_conjured_item_twice_as_fast_in_quality() {
+        Item item = new Item("Conjured", 10, 20);
+        GildedRose gildedRose = new GildedRose(new Item[] { item });
+
+        gildedRose.updateItemInventory();
+
+        assertEquals(item.quality, 18);
+        assertEquals(item.sellIn, 9);
+    }
+
+    @Test
+    void should_degrade_in_quality_by_four_if_item_expired() {
+        Item item = new Item("Conjured", 0, 20);
+        GildedRose gildedRose = new GildedRose(new Item[] { item });
+
+        gildedRose.updateItemInventory();
+
+        assertEquals(item.quality, 16);
+    }
+
+    @Test
+    void conjured_item_quality_should_never_be_negative() {
+        Item item = new Item("Conjured", 10, 1);
+        GildedRose gildedRose = new GildedRose(new Item[] { item });
+
+        gildedRose.updateItemInventory();
+
+        assertEquals(item.quality, 0);
+    }
+
+    @Test
     void should_never_be_greater_than_50_quality_of_an_item() {
         Item item = new Item("Aged Brie", 5, 50);
         GildedRose gildedRose = new GildedRose(new Item[] { item });
