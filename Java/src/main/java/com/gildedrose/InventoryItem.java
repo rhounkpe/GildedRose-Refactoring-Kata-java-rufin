@@ -2,7 +2,7 @@ package com.gildedrose;
 
 public class InventoryItem {
     public static final String AGED_BRIE = "Aged Brie";
-    public static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
     private Item item;
 
@@ -13,6 +13,10 @@ public class InventoryItem {
     public static InventoryItem create(Item item) {
         if (item.name.equals(AGED_BRIE)) {
             return new AgedBrie(item);
+        }
+
+        if (item.name.equals(BACKSTAGE_PASSES)) {
+            return new BackstagePass(item);
         }
         return new InventoryItem(item);
     }
@@ -32,7 +36,7 @@ public class InventoryItem {
             if (item.name.equals(AGED_BRIE)) {
                 increaseQuality();
             } else {
-                if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                if (item.name.equals(BACKSTAGE_PASSES)) {
                     item.quality = 0;
                 } else {
                     if (item.quality > 0) {
@@ -54,7 +58,7 @@ public class InventoryItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+        if (item.name.equals(BACKSTAGE_PASSES)) {
             increaseQuality();
 
             if (item.sellIn < 11) {
