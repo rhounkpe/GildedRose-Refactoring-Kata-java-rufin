@@ -4,6 +4,7 @@ public class InventoryItem {
     public static final String AGED_BRIE = "Aged Brie";
     public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
+    public static final String CONJURED = "Conjured";
     protected Item item;
 
     public InventoryItem(Item item) {
@@ -22,6 +23,11 @@ public class InventoryItem {
         if (item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
             return new Sulfurus(item);
         }
+
+        if (item.name.equals(CONJURED)) {
+            return new Conjured(item);
+        }
+
         return new InventoryItem(item);
     }
 
